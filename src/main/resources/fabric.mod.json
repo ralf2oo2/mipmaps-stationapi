@@ -3,8 +3,8 @@
   "id": "mipmaps",
   "version": "${version}",
 
-  "name": "MipMaps",
-  "description": "",
+  "name": "Mipmaps",
+  "description": "Adds mipmaps to stationapi",
   "authors": [
     "Ralf2oo2"
   ],
@@ -12,13 +12,22 @@
   "license": "MIT",
   "icon": "assets/mipmaps/icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "stationapi:event_bus": [
     ],
     "stationapi:event_bus_client": [
     ],
     "stationapi:event_bus_server": [
+    ],
+    "gcapi3": [
+      "net.ralf2oo2.mipmaps.config.Config"
+    ],
+    "gcapi3:factory_provider": [
+      "net.ralf2oo2.mipmaps.config.ConfigFactories"
+    ],
+    "gcapi3:presave": [
+      "net.ralf2oo2.mipmaps.config.ConfigChangedListener"
     ]
   },
   "mixins": [
