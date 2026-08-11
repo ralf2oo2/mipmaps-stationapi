@@ -26,6 +26,10 @@ public class SpriteLoaderMixin {
             )
     )
     private CompletableFuture<Void> mipmaps_replaceCompletedFuture(CompletableFuture<Void> original, List<SpriteContents> sprites, Executor executor, @Local(ordinal = 0) Map<Identifier, Sprite> map) {
-        return CompletableFuture.runAsync(() -> map.values().forEach(spritex -> ((MipmapHolder)spritex.getContents()).mipmaps_generateMipmaps(Config.CONFIG.level.getLevel())), executor);
+        if(Config.CONFIG.level.isEnabled()) {
+            return CompletableFuture.runAsync(() -> map.values().forEach(spritex -> ((MipmapHolder)spritex.getContents()).mipmaps_generateMipmaps(Config.CONFIG.level.getLevel())), executor);
+        } else {
+            return original;
+        }
     }
 }
