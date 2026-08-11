@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "id": "template",
+  "id": "mipmaps",
   "version": "${version}",
 
-  "name": "Template",
+  "name": "MipMaps",
   "description": "",
   "authors": [
-    "DanyGames2014"
+    "Ralf2oo2"
   ],
 
   "license": "MIT",
-  "icon": "assets/template/icon.png",
+  "icon": "assets/mipmaps/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -22,7 +22,7 @@
     ]
   },
   "mixins": [
-    "template.mixins.json"
+    "mipmaps.mixins.json"
   ],
 
   "depends": {
