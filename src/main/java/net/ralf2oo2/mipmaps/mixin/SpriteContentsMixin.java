@@ -51,6 +51,9 @@ public abstract class SpriteContentsMixin implements MipmapHolder {
     public void mipmaps_generateMipmaps(int mipmapLevels) {
         try {
             this.mipmaps_mipmapLevels = MipmapHelper.getMipmapLevelsImages(mipmaps_mipmapLevels, mipmapLevels);
+            if(Config.CONFIG.overrides) {
+                MipmapHelper.getMipmapOverrides(this.mipmaps_mipmapLevels, id, mipmapLevels);
+            }
         } catch (Throwable throwable) {
             CrashReport crashReport = CrashReport.create(throwable, "Generating mipmaps for frame");
             CrashReportSection crashReportSection = crashReport.addElement("Sprite being mipmapped");

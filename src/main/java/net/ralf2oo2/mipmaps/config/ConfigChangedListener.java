@@ -8,8 +8,11 @@ import net.minecraft.client.Minecraft;
 public class ConfigChangedListener implements PreConfigSavedListener {
     @Override
     public void onPreConfigSaved(int source, GlassYamlFile oldValues, GlassYamlFile newValues) {
-        if(oldValues.getInt("level", 0) != newValues.getInt("level", 0) || oldValues.getBoolean("debugColors", false) != newValues.getBoolean("debugColors", false)) {
-            Minecraft.class.cast(FabricLoader.getInstance().getGameInstance()).textureManager.reload();
+        if(oldValues.getInt("level", 0) != newValues.getInt("level", 0) || oldValues.getBoolean("debugColors", false) != newValues.getBoolean("debugColors", false) || oldValues.getBoolean("overrides", false) != newValues.getBoolean("overrides", false)) {
+            Minecraft minecraft = Minecraft.class.cast(FabricLoader.getInstance().getGameInstance());
+            if(minecraft != null) {
+                minecraft.textureManager.reload();
+            }
         }
     }
 }

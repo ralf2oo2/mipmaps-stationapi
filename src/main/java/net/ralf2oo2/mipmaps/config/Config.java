@@ -11,6 +11,9 @@ public class Config {
         @ConfigEntry(name = "Mipmap Level")
         public MipmapLevel level = MipmapLevel.OFF;
 
+        @ConfigEntry(name = "Mipmap Overrides", description = "Allows resourcepacks to override the mips of textures.")
+        public Boolean overrides = true;
+
         @ConfigEntry(name = "Debug Colors")
         public Boolean debugColors = false;
     }

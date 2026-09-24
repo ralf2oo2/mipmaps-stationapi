@@ -1,7 +1,17 @@
 package net.ralf2oo2.mipmaps.util;
 
+import net.modificationstation.stationapi.api.client.resource.ReloadableAssetsManager;
 import net.modificationstation.stationapi.api.client.texture.NativeImage;
+import net.modificationstation.stationapi.api.resource.Resource;
+import net.modificationstation.stationapi.api.resource.ResourceType;
+import net.modificationstation.stationapi.api.util.Identifier;
+import net.modificationstation.stationapi.api.util.Namespace;
 import net.modificationstation.stationapi.api.util.Util;
+import net.modificationstation.stationapi.impl.resource.ReloadableResourceManager;
+import net.ralf2oo2.mipmaps.Mipmaps;
+
+import java.io.IOException;
+import java.util.Optional;
 
 public class MipmapHelper {
     private static final float[] COLOR_FRACTIONS = Util.make(new float[256], (list) -> {
@@ -9,6 +19,21 @@ public class MipmapHelper {
             list[i] = (float)Math.pow((float)i / 255.0F, 2.2);
         }
     });
+
+    public static void getMipmapOverrides(NativeImage[] originals, Identifier identifier, int mipmap) {
+        for(int i = 1; i <= mipmap; i++) {
+            Identifier mipTexture = Identifier.of(identifier.namespace, "stationapi/textures/" + identifier.path + "_mipmap" + i + ".png");
+            Optional<Resource> texture = ReloadableAssetsManager.INSTANCE.getResource(mipTexture);
+            if(texture.isPresent()){
+               try {
+                   NativeImage image = NativeImage.read(texture.get().getInputStream());
+                   originals[i] = image;
+               } catch (IOException e) {
+                   Mipmaps.LOGGER.error("Could not load mipmap override %s", mipTexture);
+               }
+            }
+        }
+    }
 
     public static NativeImage[] getMipmapLevelsImages(NativeImage[] originals, int mipmap) {
         if (mipmap + 1 <= originals.length) {
