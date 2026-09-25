@@ -8,10 +8,11 @@
   "server": [
   ],
   "client": [
+    "BakedModelRendererImplMixin",
+    "GameRendererMixin",
     "SpriteAtlasTextureMixin",
     "SpriteContentsMixin",
-    "SpriteLoaderMixin",
-    "BakedModelRendererImplMixin"
+    "SpriteLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

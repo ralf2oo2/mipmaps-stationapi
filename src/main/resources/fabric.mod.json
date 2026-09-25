@@ -15,9 +15,9 @@
   "environment": "client",
   "entrypoints": {
     "stationapi:event_bus": [
-      "net.ralf2oo2.mipmaps.Mipmaps"
     ],
     "stationapi:event_bus_client": [
+      "net.ralf2oo2.mipmaps.Mipmaps"
     ],
     "stationapi:event_bus_server": [
     ],

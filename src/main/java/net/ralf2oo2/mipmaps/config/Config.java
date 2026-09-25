@@ -11,10 +11,16 @@ public class Config {
         @ConfigEntry(name = "Mipmap Level")
         public MipmapLevel level = MipmapLevel.OFF;
 
+        @ConfigEntry(name = "Mipmap Bias")
+        public Float bias = 0.0f;
+
         @ConfigEntry(name = "Mipmap Overrides", description = "Allows resourcepacks to override the mips of textures.")
         public Boolean overrides = true;
 
         @ConfigEntry(name = "Debug Colors")
         public Boolean debugColors = false;
+
+        @ConfigEntry(name = "Debug Logging", description = "Extra logs when creating mipmaps")
+        public Boolean debugLogging = false;
     }
 }

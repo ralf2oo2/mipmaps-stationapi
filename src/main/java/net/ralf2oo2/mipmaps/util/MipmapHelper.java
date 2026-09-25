@@ -28,8 +28,9 @@ public class MipmapHelper {
                try {
                    NativeImage image = NativeImage.read(texture.get().getInputStream());
                    originals[i] = image;
+                   Mipmaps.LOGGER.info("Loaded mipmap override {}", mipTexture);
                } catch (IOException e) {
-                   Mipmaps.LOGGER.error("Could not load mipmap override %s", mipTexture);
+                   Mipmaps.LOGGER.error("Could not load mipmap override {}", mipTexture);
                }
             }
         }
